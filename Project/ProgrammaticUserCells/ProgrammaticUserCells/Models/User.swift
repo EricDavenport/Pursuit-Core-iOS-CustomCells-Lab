@@ -30,7 +30,9 @@ struct Name: Codable {
   let first: String
   let last: String
  // let fullName = "\(title) \(first) \(last)"
-  
+  func fullname() -> String {
+    return "\(title) \(first) \(last)"
+  }
 }
 
 struct Location: Codable {
@@ -66,6 +68,27 @@ struct Street: Codable {
 struct BirthdayInfo: Codable {
   let date: String
   let age: Int
+  
+  func removeTimeStamp() -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM-dd-yyyy"
+    dateFormatter.timeStyle = .none
+    let dateFromString : Date = dateFormatter.date(from: date) ?? Date()
+    let newDate = dateFormatter.string(from: dateFromString)
+    
+    return newDate
+  }
+  
+  
+//  let date = "2016-02-10 00:00:00"
+//   let dateFormatter = NSDateFormatter()
+//
+//   dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+//   let dateFromString : NSDate = dateFormatter.dateFromString(date)!
+//   dateFormatter.dateFormat = "dd-MM-yyyy"
+//   let datenew= dateFormatter.stringFromDate(dateFromString)
+//
+//     print(datenew)
 }
 
 struct UserImageInfo: Codable {

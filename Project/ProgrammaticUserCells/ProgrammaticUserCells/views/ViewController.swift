@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       controllerView.collectionView.dataSource = self
-      //controllerView.collectionView.delegate = self
+      controllerView.collectionView.delegate = self
       loadUsers()
       controllerView.collectionView.register(UINib(nibName: "collectionViewCell", bundle: nil), forCellWithReuseIdentifier: "userCell")
     }
@@ -52,3 +52,17 @@ extension ViewController : UICollectionViewDataSource {
   }
 }
 
+extension ViewController : UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    let user = users[indexPath.row]
+    
+    let detailVC = DetailController()
+    
+    detailVC.user = user
+    
+    navigationController?.pushViewController(detailVC, animated: true)
+    
+    
+  }
+}

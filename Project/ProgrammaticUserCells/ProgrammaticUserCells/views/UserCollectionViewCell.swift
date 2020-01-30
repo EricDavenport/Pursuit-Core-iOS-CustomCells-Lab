@@ -16,13 +16,12 @@ class UserCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var birthdayLabel: UILabel!
   @IBOutlet weak var locationLabel: UILabel!
   
-  //var userMe : User?
-  
   public func configureCell(_ user: User) {
     imageView.getImage(with: (user.picture.thumbnail)) { [weak self] (result) in
       DispatchQueue.main.async {
-        self?.birthdayLabel.text = user.dob.date
-        self?.nameLabel.text = user.name.first
+        self?.birthdayLabel.text = "Age: \(user.dob.age)"
+        self?.nameLabel.text = user.name.fullname()
+        self?.locationLabel.text = "\(user.location.city), \(user.location.state)"
         switch result {
         case .failure:
           self?.imageView.image = UIImage(named: "gear")
