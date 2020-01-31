@@ -21,6 +21,7 @@ class DetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+      navigationItem.title = "\(user?.name.fullname() ?? "")"
       view.backgroundColor = .cyan
       updateUI()
     }
